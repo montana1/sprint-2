@@ -76,6 +76,23 @@ networks:
       config:
         - subnet: 173.17.0.0/16
 
+  pymongo_api:
+    container_name: mongo-sharding
+    build:
+      context: app
+      dockerfile: Dockerfile
+    image: kazhem/pymongo_api:1.0.0
+    networks:
+      app-network:
+        ipv4_address: 173.17.0.11
+    depends_on:
+      - mongos_router
+    ports:
+      - 8080:8080
+    environment:
+      MONGODB_URL: "mongodb://mongos_router:27020"
+      MONGODB_DATABASE_NAME: "somedb"
+
 volumes:
   config-data:
   shard1-data:
