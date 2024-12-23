@@ -52,7 +52,7 @@ services:
       interval: 5s
       start_period: 10s
 
-  shardr3:
+  shard1r3:
     image: mongo:latest
     container_name: shard1r3
     restart: always
