@@ -68,13 +68,6 @@ services:
       interval: 5s
       start_period: 10s
 
-networks:
-  app-network:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: 173.17.0.0/16
 
   pymongo_api:
     container_name: mongo-sharding
@@ -92,6 +85,14 @@ networks:
     environment:
       MONGODB_URL: "mongodb://mongos_router:27020"
       MONGODB_DATABASE_NAME: "somedb"
+
+networks:
+  app-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 173.17.0.0/16
 
 volumes:
   config-data:
