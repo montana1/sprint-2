@@ -131,7 +131,7 @@ services:
     networks:
       app-network:
         ipv4_address: 173.17.0.7
-    command: mongos --port 27020 --configdb config_server/configSrv:27017 --bind_ip_all
+    command: mongos --configdb config_server/configSrv:27017 --bind_ip_all --port 27020
     healthcheck:
       test: [ "CMD", "mongo", "--eval", "db.adminCommand('ping')" ]
       interval: 5s
@@ -139,7 +139,7 @@ services:
 
 
   pymongo_api:
-    container_name: mongo-sharding
+    container_name: mongo-sharding-repl
     build:
       context: app
       dockerfile: Dockerfile
